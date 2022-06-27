@@ -15,18 +15,19 @@ function findBill(quantity, product, price) {
     // importTax calculator
     if (checkImported.test(product)) {
         importTax += price * importTaxValue;
-        //importTax = (Math.ceil(importTax * 20) / 20).toFixed(2);
-        totalTax += importTax;
+        importTax = parseFloat((Math.ceil(importTax * 20) / 20).toFixed(2));
+        totalTax += importTax * quantity;
     }
     // basicTax calculator
     if (!(product.match(/food/) || product.match(/chocolate/) || product.match(/medicines/) || product.match(/book/) || product.match(/headache/))) {
         basicTax = price * basicTaxValue;
-        //basicTax = (Math.ceil(basicTax * 20) / 20).toFixed(2)
-        totalTax += basicTax;
+        basicTax = parseFloat((Math.ceil(basicTax * 20) / 20).toFixed(2));
+        totalTax += basicTax * quantity;
     }
     price = price + basicTax + importTax;
+    price = price * quantity;
     TotalBill += price;
-    result = result.concat(quantity.toString(), ' ', product, ':', ' ', price.toString());
+    result = result.concat(quantity.toString(), ' ', product, ':', ' ', price.toFixed(2).toString());
     return result;
 }
 function findTax() {
