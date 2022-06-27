@@ -15,3 +15,7 @@ yarn install
 yarn test
 ```
 * All Tests should pass
+
+------------ How to Run -------------------------
+
+Run the code.ts file in the src folder.
